@@ -34,14 +34,4 @@ public class RegistrationController {
 		return "login";
 	}
 
-	@ModelAttribute("newUser")
-	public Users getDefaultUser() {
-		return new Users();
-	}
-
-	@ModelAttribute("genderItems")
-	public List<String> getGenderItems() {
-		return Arrays.asList("Male", "Female", "Other");
-	}
-
 }

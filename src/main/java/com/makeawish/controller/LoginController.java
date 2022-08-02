@@ -33,8 +33,4 @@ public class LoginController {
 		return "error";
 	}
 	
-	@ModelAttribute("login")
-	public LoginCredential getDefaultCredentials() {
-		return new LoginCredential();
-	}
 }

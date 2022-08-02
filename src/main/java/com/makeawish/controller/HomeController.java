@@ -37,19 +37,4 @@ public class HomeController {
 		return "register";
 	}
 
-	@ModelAttribute("newUser")
-	public Users getDefaultUser() {
-		return new Users();
-	}
-
-	@ModelAttribute("genderItems")
-	public List<String> getGenderItems() {
-		return Arrays.asList("Male", "Female", "Other");
-	}
-
-	@ModelAttribute("login")
-	public LoginCredential getDefaultCredentials() {
-		return new LoginCredential();
-	}
-
 }
