@@ -1,11 +1,9 @@
 package com.makeawish.config;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.Future;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -14,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.XmlViewResolver;
 
 import com.makeawish.converters.StringToEnumConverter;
 
@@ -27,14 +26,14 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
 				"classpath:/static//images/");
 	}
 
-	@Bean
-	protected InternalResourceViewResolver jspViewResolver() {
-		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-		internalResourceViewResolver.setPrefix("/WEB-INF/jsp/");
-		internalResourceViewResolver.setSuffix(".jsp");
-		internalResourceViewResolver.setViewClass(JstlView.class);
-		return internalResourceViewResolver;
-	}
+//	@Bean
+//	protected InternalResourceViewResolver jspViewResolver() {
+//		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+//		internalResourceViewResolver.setPrefix("/WEB-INF/jsp/");
+//		internalResourceViewResolver.setSuffix(".jsp");
+//		internalResourceViewResolver.setViewClass(JstlView.class);
+//		return internalResourceViewResolver;
+//	}
 
 	@Override
 	protected void addFormatters(FormatterRegistry registry) {
@@ -59,5 +58,12 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
 		ThreadPoolTaskExecutor poolTaskExecutor = new ThreadPoolTaskExecutor();
 		poolTaskExecutor.setThreadNamePrefix("health-plus-plus-");
 		return poolTaskExecutor;
+	}
+	
+	@Bean
+	public XmlViewResolver xmlViewResolver() {
+		XmlViewResolver viewResolver = new XmlViewResolver();
+		viewResolver.setLocation(new ClassPathResource("views.xml"));
+		return viewResolver;
 	}
 }
