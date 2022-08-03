@@ -1,5 +1,7 @@
 package com.makeawish.controller;
 
+import java.util.concurrent.Callable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,13 +20,13 @@ public class LoginController {
 	UserRepository userRepository;
 
 	@PostMapping("/goToLogin")
-	public String login(@ModelAttribute("login") LoginCredential credential, Model model) {
-	    model.addAttribute("login", new LoginCredential()); 
+	public Callable<String> login(@ModelAttribute("login") LoginCredential credential, Model model) {
+		model.addAttribute("login", new LoginCredential());
 		Users user = userRepository.searchByUsername(credential.getUsername());
 		if (user == null) {
 			throw new ApplicationException("User was not found");
 		}
-		return "index"; 	 	
+		return () -> "index";
 	}
 
 	@ExceptionHandler(ApplicationException.class)
@@ -32,5 +34,5 @@ public class LoginController {
 		System.out.println("In Exception handler of Login Controller");
 		return "error";
 	}
-	
+
 }

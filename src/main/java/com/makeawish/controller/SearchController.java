@@ -2,6 +2,9 @@ package com.makeawish.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.Callable;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +22,20 @@ public class SearchController {
 	ProductRepository productRepository;
 
 	@GetMapping("/search")
-	public String search(@RequestParam("search") String searchString, Model model) {
+	public Callable<String> search(@RequestParam("search") String searchString, Model model,
+			HttpServletRequest request) {
 		System.out.println("Inside search controller");
+		System.out.println(Thread.currentThread().getName());
 		System.out.println(LocalDateTime.now() + " Searched for: " + searchString);
-		List<Product> searchedProducts = productRepository.searchByName(searchString);
-		System.out.println("Found "+ searchedProducts.size() + " products :" + searchedProducts );
-		model.addAttribute("products", searchedProducts);
-		return "search";
+
+		return () -> {
+			Thread.sleep(3000);
+			System.out.println(request.isAsyncSupported());
+			System.out.println("From spring mvc task executor " + Thread.currentThread().getName());
+			List<Product> searchedProducts = productRepository.searchByName(searchString);
+			System.out.println("Found " + searchedProducts.size() + " products :" + searchedProducts);
+			model.addAttribute("products", searchedProducts);
+			return "search";
+		};
 	}
 }

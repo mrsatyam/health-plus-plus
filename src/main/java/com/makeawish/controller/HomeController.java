@@ -1,40 +1,40 @@
 package com.makeawish.controller;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.concurrent.Callable;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-
-import com.makeawish.model.LoginCredential;
-import com.makeawish.model.Users;
 
 @Controller
 public class HomeController {
 
 	@GetMapping("/home")
-	public String goHome() {
+	public Callable<String> goHome(HttpServletRequest httpServletRequest) {
 		System.out.println("In the home controller");
-		return "index";
+		System.out.println("Is Async supported: " + httpServletRequest.isAsyncSupported());
+		System.out.println(Thread.currentThread().getName());
+		return () -> "index";
+
 	}
 
 	@GetMapping("/goToSearch")
-	public String goToSearch() {
+	public Callable<String> goToSearch() {
 		System.out.println("going to search page");
-		return "search";
+		return () -> "search";
 	}
 
 	@GetMapping("/goToLogin")
-	public String goToLogin() {
+	public Callable<String> goToLogin() {
 		System.out.println("going to login page");
-		return "login";
+		return () -> "login";
 	}
 
 	@GetMapping("/goToRegistration")
-	public String goToRegistration() {
+	public Callable<String> goToRegistration() {
 		System.out.println("going to registration page");
-		return "register";
+		return () -> "register";
 	}
 
 }

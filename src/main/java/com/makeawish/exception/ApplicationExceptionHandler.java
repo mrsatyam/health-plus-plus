@@ -9,7 +9,7 @@ public class ApplicationExceptionHandler {
 
 	@ExceptionHandler(ApplicationException.class)
 	public String handleException() {
-		System.out.println("In global Exception handler");
+		System.out.println("In global Exception handler ");
 		return "error";
 	}
 
