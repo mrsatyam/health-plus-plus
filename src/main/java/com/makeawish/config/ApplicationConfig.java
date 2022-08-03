@@ -41,15 +41,18 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
 		registry.addConverter(new StringToEnumConverter());
 		super.addFormatters(registry);
 	}
-	
+
+	/**
+	 * Override this method to customize/configure your own AsyncTaskExecutor
+	 **/
 	@Override
 	protected void configureAsyncSupport(AsyncSupportConfigurer configurer) {
 		configurer.setDefaultTimeout(5000);
 		configurer.setTaskExecutor(getMvcTaskExecutor());
 	}
-	
+
 	/**
-	 * @return
+	 * @return {@code AsyncTaskExecutor}
 	 */
 	@Bean
 	public AsyncTaskExecutor getMvcTaskExecutor() {

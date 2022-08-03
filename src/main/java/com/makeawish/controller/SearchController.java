@@ -21,6 +21,12 @@ public class SearchController {
 	@Autowired
 	ProductRepository productRepository;
 
+	/**
+	 * Returns @Callable<@String> so that Asynchronous threads are used to handle
+	 * the request("GET" here)
+	 *
+	 * @return @Callable for Async processing to work.
+	 */
 	@GetMapping("/search")
 	public Callable<String> search(@RequestParam("search") String searchString, Model model,
 			HttpServletRequest request) {
