@@ -26,14 +26,15 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
 				"classpath:/static//images/");
 	}
 
-//	@Bean
-//	protected InternalResourceViewResolver jspViewResolver() {
-//		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-//		internalResourceViewResolver.setPrefix("/WEB-INF/jsp/");
-//		internalResourceViewResolver.setSuffix(".jsp");
-//		internalResourceViewResolver.setViewClass(JstlView.class);
-//		return internalResourceViewResolver;
-//	}
+	@Bean
+	protected InternalResourceViewResolver jspViewResolver() {
+		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
+		internalResourceViewResolver.setPrefix("/WEB-INF/jsp/");
+		internalResourceViewResolver.setSuffix(".jsp");
+		internalResourceViewResolver.setViewClass(JstlView.class);
+		internalResourceViewResolver.setOrder(2);
+		return internalResourceViewResolver;
+	}
 
 	@Override
 	protected void addFormatters(FormatterRegistry registry) {
@@ -59,11 +60,12 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
 		poolTaskExecutor.setThreadNamePrefix("health-plus-plus-");
 		return poolTaskExecutor;
 	}
-	
+
 	@Bean
 	public XmlViewResolver xmlViewResolver() {
 		XmlViewResolver viewResolver = new XmlViewResolver();
 		viewResolver.setLocation(new ClassPathResource("views.xml"));
+		viewResolver.setOrder(1);
 		return viewResolver;
 	}
 }

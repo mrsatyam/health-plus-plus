@@ -11,16 +11,16 @@
 		<property name="url" value="/WEB-INF/jsp/search.jsp"/>
 	</bean>
 	
-	<bean id="register" class="org.springframework.web.servlet.view.JstlView">
+	<!-- <bean id="register" class="org.springframework.web.servlet.view.JstlView">
 		<property name="url" value="/WEB-INF/jsp/register.jsp"/>
-	</bean>
+	</bean> -->
 	
 	<bean id="error" class="org.springframework.web.servlet.view.JstlView">
 		<property name="url" value="/WEB-INF/jsp/error.jsp"/>
 	</bean>
 	
-	<bean id="login" class="org.springframework.web.servlet.view.JstlView">
+	<!-- <bean id="login" class="org.springframework.web.servlet.view.JstlView">
 		<property name="url" value="/WEB-INF/jsp/login.jsp"/>
-	</bean>
+	</bean>  -->
 	
 </beans>
