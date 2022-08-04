@@ -8,6 +8,7 @@ import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.XmlViewResolver;
 
 import com.makeawish.converters.StringToEnumConverter;
+import com.makeawish.interceptor.LoggingInterceptor;
 
 @Configuration
 @ComponentScan(basePackages = "com.makeawish")
@@ -67,5 +69,12 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
 		viewResolver.setLocation(new ClassPathResource("views.xml"));
 		viewResolver.setOrder(1);
 		return viewResolver;
+	}
+
+	@Override
+	protected void addInterceptors(InterceptorRegistry registry) {
+		// addPatterns means invoking the interceptor for a particular URL pattern. * in
+		// this case meaning for all requests.
+		registry.addInterceptor(new LoggingInterceptor()).addPathPatterns("/*");
 	}
 }
