@@ -21,9 +21,9 @@ table, th, td {
 				<!-- branding -->
 				<ul class="navbar">
 					<li><a href="/home">home</a></li>
-					<li><a href="/goToLogin">logout</a></li>
+					<li><a href="/logout">logout</a></li>
 					<li><a href="/goToSearch">search</a></li>
-					<li><a href="">linkedin</a></li>
+					<li><a href="/linkedin">linkedin</a></li>
 				</ul>
 				<!-- navbar -->
 
