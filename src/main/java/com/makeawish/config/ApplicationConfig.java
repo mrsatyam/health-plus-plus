@@ -85,6 +85,7 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
 	/**
 	 *
 	 */
+	@Override
 	@Bean
 	public ThemeResolver themeResolver() {
 		CookieThemeResolver cookieThemeResolver = new CookieThemeResolver();
@@ -92,4 +93,5 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
 		cookieThemeResolver.setDefaultThemeName("client-theme-1");
 		return cookieThemeResolver;
 	}
+	
 }

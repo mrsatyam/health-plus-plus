@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="<spring:theme code='styleSheet'/>" type="text/css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
-Sök
+<spring:message code="label.home"/>
 	<body>
 		<header id="home" class="header">
 			<c:if test="${activity} =='gym'}">
@@ -22,10 +22,10 @@ Sök
 					</div>
 					<!-- branding -->
 					<ul class="navbar">
-						<li><a href="/home">home</a></li>
-						<li><a href="/goToLogin">login</a></li>
-						<li><a href="/goToSearch">search</a></li>
-						<li><a href="/linkedin">linkedin</a></li>
+						<li><a href="/home"><spring:message code="label.home"/></a></li>
+						<li><a href="/goToLogin"><spring:message code="label.login"/></a></li>
+						<li><a href="/goToSearch"><spring:message code="label.search"/></a></li>
+						<li><a href="/linkedin"><spring:message code="label.linkedin"/></a></li>
 					</ul>
 					<!-- navbar -->
 				</div>
